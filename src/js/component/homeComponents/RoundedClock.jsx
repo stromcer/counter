@@ -15,7 +15,6 @@ const RoundedClock = ({seconds}) => {
         transform: `rotateZ(${minutesToRotation}deg)`,
     }
     
-    console.log(minutes)
 
 
     return(
