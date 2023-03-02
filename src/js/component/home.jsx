@@ -1,10 +1,11 @@
 import React,{useState, useEffect} from "react";
+
 import Clock from "./homeComponents/Reloj.jsx"
 import Controles from "./homeComponents/Controles.jsx"
 import MarchaAtras from "./homeComponents/MarchaAtras.jsx";
 import Alarma from "./homeComponents/Alarma.jsx";
 import Alerta from "./homeComponents/Alerta.jsx"
-
+import RoundedClock from "./homeComponents/RoundedClock.jsx";
 
 //create your first component
 
@@ -22,40 +23,45 @@ const Home = () => {
 
 	const handlePauseButton = () => {
 		setTimerWork((prevState)=> !prevState)
+		clearTimeout(clock)
 	}
 
 	const handleResetButton = () => {
+		clearTimeout(clock)
 		setBackwardCount(false)
 		setAlarm(false)
 		setAlarmTarget(0)
 		setTotalSeconds(0)
-		setTimeout(()=>{
-			setTotalSeconds(0)
-		},500)
-
 	}
 
-	const handleAlarmButton = () => {
+	const handleAlarmButton = (e) => {
+		clearTimeout(clock)
 		setAlarm(true)
+		setAlarmTarget(e.target.previousSibling.value)
 	}
 
 
-	const handleBackwardsButton = () => {
-		setTotalSeconds((prevState) => backwardsTarget)
-		setBackwardCount((prevState) => !prevState)
+	const handleBackwardsButton = (e) => {
+		let value = e.target.previousSibling.value;
+		 
+		if(!(totalSeconds == value)){
+			handleResetButton()
+			clearTimeout(clock)
+			setTotalSeconds(value)
+			setBackwardCount((prevState) => !prevState)
+		}
+
 	}
 
 	//   END  HANDLERS	END
 
-
 	
-	useEffect(()=>{
-		let clock = setInterval(()=>{
-			clearInterval(clock)
+	let clock = setTimeout(()=>{
+			
 			if(!timerWork){
 				return 
 			}
-			if(alarm && totalSeconds == alarmTarget){
+			if((alarm && totalSeconds == alarmTarget) || (backwardCount && totalSeconds <= 0)){
 				setTimerWork((prevState) => !prevState)
 				return
 			}
@@ -64,21 +70,19 @@ const Home = () => {
 				return 
 			}		
 			setTotalSeconds((lastState) => lastState+1)
-		},1000)},
-		[totalSeconds])
+		},1000)
 
-	useEffect(()=>{
+	
 		
-	},[timerWork])
-
-
+		
 	return (
 		<>
 		<Clock seconds={totalSeconds}/>
 		<Controles working={timerWork} onResetCounter={handleResetButton} onPauseCounter={handlePauseButton} />
-		<MarchaAtras onBackwardsCount={handleBackwardsButton} value={backwardsTarget} onChange={e => setBackwardsTarget(e.target.value)} />
-		<Alarma  onChange={e => setAlarmTarget(e.target.value)} onAlarmButton={handleAlarmButton}  value={alarmTarget} />
+		<MarchaAtras onBackwardsCount={handleBackwardsButton} />
+		<Alarma  onAlarmButton={handleAlarmButton} />
 		<Alerta activo={alarm && totalSeconds == alarmTarget} onResetCounter={handleResetButton} />
+		<RoundedClock seconds={totalSeconds}/>
 		</>
 	);
 };

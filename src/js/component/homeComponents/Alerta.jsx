@@ -9,7 +9,7 @@ const Alerta = ({activo,onResetCounter})=>{
     return(<>
         <div className={alertBoxClass}>
             <div className="bg-danger d-flex text-center align-items-center rounded">
-                <div>
+                <div className="d-flex flex-column text-center justify-content-center">
                     <h1>ATENCION HAS LLEGADO AL TIEMPO INDICADO</h1>
                     <button onClick={onResetCounter} className="btn btn-success">Reiniciar</button>
                 </div>

@@ -15,7 +15,7 @@
 }
 
 .alertBox{
-    z-index: 1;
+    z-index: 2;
     position:absolute;
     top:0;
     width:100vw;
@@ -23,10 +23,60 @@
     background-color: rgba(0, 0, 0, 0.400);
 }
 .alertBox > div{
-    z-index: 2;
-    position:absolute;
-    top:25%;
-    right:25%;
-    width:50vw;
-    height: 50vh;
+    position:relative;
+    top:30vh;
+    margin: auto;
+    width: fit-content;
+    padding:45px;
+    height: 20vh;
+}
+
+
+
+.RoundedClockBody{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border-radius: 50%;
+    margin-top:100px;
+    margin-inline: auto;
+}
+
+
+.RoundedClockTimers{
+    height:195px;
+    width:195px;
+    border-radius: 50%;
+    border: 4px dotted #000000;
+    position:relative;
+    top:2.5px;
+    left:2.5px;
+
+}
+
+.RoundedClockHand{
+    margin-bottom:0px;
+    margin-inline: auto;
+    height: 95px;
+    width: 2px;
+    background-color: rgb(219, 9, 9);
+    transform-origin: bottom;
+
+    
+}
+
+body{
+    min-height: 100vh;
+    background-color: black;
+}
+
+button{
+    width:150px;
+}
+.controller  button{
+    width:50px;
+}
+
+input{
+    width:75px;
 }
