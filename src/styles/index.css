@@ -54,15 +54,23 @@
 
 }
 
-.RoundedClockHand{
-    margin-bottom:0px;
+.RoundedClockHandSeconds{
     margin-inline: auto;
     height: 95px;
     width: 2px;
     background-color: rgb(219, 9, 9);
     transform-origin: bottom;
-
+    border-radius: 50% 50% 0px 0px ;
     
+}
+
+.RoundedClockHandMinutes{
+    margin-inline: auto;
+    height: 55px;
+    width: 5px;
+    background-color: rgb(0, 0, 0);
+    transform-origin: top;
+    border-radius: 0px 0px 50% 50%;    
 }
 
 body{

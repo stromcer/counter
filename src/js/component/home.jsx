@@ -34,9 +34,10 @@ const Home = () => {
 	}
 
 	const handleAlarmButton = (e) => {
+		let value = e.target.previousSibling.value;
 		clearTimeout(clock)
 		setAlarm(true)
-		setAlarmTarget(e.target.previousSibling.value)
+		setAlarmTarget(value)
 	}
 
 
