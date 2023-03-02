@@ -13,3 +13,20 @@
 .clock > div {
     width: 50px;
 }
+
+.alertBox{
+    z-index: 1;
+    position:absolute;
+    top:0;
+    width:100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.400);
+}
+.alertBox > div{
+    z-index: 2;
+    position:absolute;
+    top:25%;
+    right:25%;
+    width:50vw;
+    height: 50vh;
+}
