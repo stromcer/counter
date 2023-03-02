@@ -14,7 +14,6 @@ const Home = () => {
 	let [timerWork, setTimerWork] = useState(true)
 	let [totalSeconds, setTotalSeconds] = useState(0)
 	let [backwardCount, setBackwardCount] = useState(false)
-	let [backwardsTarget, setBackwardsTarget] = useState(0)
 	let [alarmTarget, setAlarmTarget] = useState(0)
 	let [alarm, setAlarm] = useState(false)
 
