@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const RoundedClock = ({seconds}) => {
+const RoundedClock = ({seconds, onSyncButton}) => {
 
     let secondsToRotation = seconds*6;
     let minutes = Math.floor(seconds/60);
@@ -20,7 +20,6 @@ const RoundedClock = ({seconds}) => {
     let hoursRotation = {
         transform: `translateX(-50%)  rotateZ(${hoursToRotation}deg) `,
     }
-    
 
 
     return(
@@ -30,6 +29,9 @@ const RoundedClock = ({seconds}) => {
                     <div className="RoundedClockHandSeconds" style={secondsRotation}></div>
                     <div className="RoundedClockHandMinutes" style={minutesRotation}></div>
                     <div className="RoundedClockHandHours" style={hoursRotation}></div>
+                </div>
+                <div className="text-center mt-5">
+                   <button className="btn btn-dark" onClick={onSyncButton}>Sync NOW!</button>
                 </div>
             </div>
         </div>

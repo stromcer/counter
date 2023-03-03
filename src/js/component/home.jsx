@@ -18,6 +18,7 @@ const Home = () => {
 	let [alarm, setAlarm] = useState(false)
 
 
+
 	//   HANDLERS 
 
 	const handlePauseButton = () => {
@@ -53,6 +54,14 @@ const Home = () => {
 
 	}
 
+	const handleSyncButton = () => {
+		clearTimeout(clock)
+		let date = new Date
+    	let totalDate = (date.getHours()*60+date.getMinutes())*60+date.getSeconds();
+		setTotalSeconds((prevState) => totalDate)
+	}
+	
+
 	//   END  HANDLERS	END
 
 	
@@ -82,7 +91,7 @@ const Home = () => {
 		<MarchaAtras onBackwardsCount={handleBackwardsButton} />
 		<Alarma  onAlarmButton={handleAlarmButton} />
 		<Alerta activo={alarm && totalSeconds == alarmTarget} onResetCounter={handleResetButton} />
-		<RoundedClock seconds={totalSeconds}/>
+		<RoundedClock onSyncButton={handleSyncButton} seconds={totalSeconds}/>
 		</>
 	);
 };
