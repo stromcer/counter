@@ -37,7 +37,7 @@ const Home = () => {
 	const handleAlarmButton = (e) => {
 		let value = e.target.previousSibling.value;
 		clearTimeout(clock)
-		setAlarm(true)
+		setAlarm((prevState)=> !prevState)
 		setAlarmTarget(value)
 	}
 
@@ -45,19 +45,26 @@ const Home = () => {
 	const handleBackwardsButton = (e) => {
 		let value = e.target.previousSibling.value;
 		 
-		if(!(totalSeconds == value)){
-			handleResetButton()
-			clearTimeout(clock)
-			setTotalSeconds(value)
-			setBackwardCount((prevState) => !prevState)
+		if(totalSeconds == value){
+			return
 		}
+
+		if(value == 0){
+			value = totalSeconds
+		}
+
+		clearTimeout(clock)
+		setTotalSeconds(value)
+		setBackwardCount((prevState) => !prevState)
 
 	}
 
 	const handleSyncButton = () => {
-		clearTimeout(clock)
+		
 		let date = new Date
     	let totalDate = (date.getHours()*60+date.getMinutes())*60+date.getSeconds();
+		if(totalSeconds == totalDate){return}
+		clearTimeout(clock)
 		setTotalSeconds((prevState) => totalDate)
 	}
 	
@@ -88,8 +95,8 @@ const Home = () => {
 		<>
 		<Clock seconds={totalSeconds}/>
 		<Controles working={timerWork} onResetCounter={handleResetButton} onPauseCounter={handlePauseButton} />
-		<MarchaAtras onBackwardsCount={handleBackwardsButton} />
-		<Alarma  onAlarmButton={handleAlarmButton} />
+		<MarchaAtras active={backwardCount} onBackwardsCount={handleBackwardsButton} />
+		<Alarma active={alarm} onAlarmButton={handleAlarmButton} />
 		<Alerta activo={alarm && totalSeconds == alarmTarget} onResetCounter={handleResetButton} />
 		<RoundedClock onSyncButton={handleSyncButton} seconds={totalSeconds}/>
 		</>

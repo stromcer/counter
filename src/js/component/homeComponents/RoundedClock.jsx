@@ -31,7 +31,7 @@ const RoundedClock = ({seconds, onSyncButton}) => {
                     <div className="RoundedClockHandHours" style={hoursRotation}></div>
                 </div>
                 <div className="text-center mt-5">
-                   <button className="btn btn-dark" onClick={onSyncButton}>Sync NOW!</button>
+                   <button className="btn btn-dark" onClick={onSyncButton} title="¡Sync the clock with your local time!">Sync NOW!</button>
                 </div>
             </div>
         </div>
