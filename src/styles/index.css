@@ -61,6 +61,7 @@
     background-color: rgb(219, 9, 9);
     transform-origin: bottom;
     border-radius: 50% 50% 0px 0px ;
+    transition: transform .2s;
     
 }
 
@@ -68,9 +69,22 @@
     margin-inline: auto;
     height: 55px;
     width: 5px;
-    background-color: rgb(0, 0, 0);
+    background-color: silver;
     transform-origin: top;
     border-radius: 0px 0px 50% 50%;    
+    transition: transform 1s;
+}
+
+.RoundedClockHandHours{
+    position:absolute;
+    top: 51%;
+    left: 50%;
+    height: 35px;
+    width: 10px;
+    background-color: rgb(0, 0, 0);
+    transform-origin: top;
+    border-radius: 5px 5px 80% 80% ; 
+    transition: transform 2s;
 }
 
 body{

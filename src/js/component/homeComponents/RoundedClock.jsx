@@ -3,9 +3,11 @@ import React from "react";
 
 const RoundedClock = ({seconds}) => {
 
-    let secondsToRotation = (seconds%60)*6
+    let secondsToRotation = seconds*6;
     let minutes = Math.floor(seconds/60);
-    let minutesToRotation = (minutes*6)-180
+    let minutesToRotation = (minutes*6)-180;
+    let hours = Math.floor(minutes/60);
+    let hoursToRotation = (hours*30)-180;
 
     let secondsRotation = {
         transform: `rotateZ(${secondsToRotation}deg)`,
@@ -13,6 +15,10 @@ const RoundedClock = ({seconds}) => {
 
     let minutesRotation = {
         transform: `rotateZ(${minutesToRotation}deg)`,
+    }
+
+    let hoursRotation = {
+        transform: `translateX(-50%)  rotateZ(${hoursToRotation}deg) `,
     }
     
 
@@ -23,6 +29,7 @@ const RoundedClock = ({seconds}) => {
                 <div className="RoundedClockTimers">
                     <div className="RoundedClockHandSeconds" style={secondsRotation}></div>
                     <div className="RoundedClockHandMinutes" style={minutesRotation}></div>
+                    <div className="RoundedClockHandHours" style={hoursRotation}></div>
                 </div>
             </div>
         </div>
