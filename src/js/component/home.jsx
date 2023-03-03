@@ -37,7 +37,7 @@ const Home = () => {
 	const handleAlarmButton = (e) => {
 		let value = e.target.previousSibling.value;
 		clearTimeout(clock)
-		setAlarm((prevState)=> !prevState)
+		setAlarm((prevState)=> true)
 		setAlarmTarget(value)
 		
 	}
@@ -59,7 +59,7 @@ const Home = () => {
 
 		clearTimeout(clock)
 		setTotalSeconds(value)
-		setBackwardCount((prevState) => !prevState)
+		setBackwardCount((prevState) => true)
 	}
 
 	const handleSyncButton = () => {
